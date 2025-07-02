@@ -1,0 +1,45 @@
+esphome:
+  name: garage
+  friendly_name: garage
+
+rp2040:
+  board: rpipicow
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret garage-api-encryption-key
+
+ota:
+  - platform: esphome
+    password: !secret garage-ota-password
+
+wifi:
+  ssid: !secret wifi-ssid
+  password: !secret wifi-password
+
+  # Enable fallback hotspot in case wifi connection fails
+  ap:
+    ssid: "Garage Fallback Hotspot"
+    password: "sYV2nSM4hvus"
+
+binary_sensor:
+- platform: gpio
+  name: "Garage Button X"
+  pin:
+    number: 14
+    inverted: false
+    mode:
+      input: true
+      pullup: true
+- platform: gpio
+  name: "Garage Button Y"
+  pin:
+    number: 15
+    inverted: false
+    mode:
+      input: true
+      pullup: true

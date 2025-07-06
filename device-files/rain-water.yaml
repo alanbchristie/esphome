@@ -1,6 +1,6 @@
 esphome:
-  name: garage
-  friendly_name: garage
+  name: rain-water
+  friendly_name: Rain Water Control
 
 rp2040:
   board: rpipicow
@@ -11,11 +11,11 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: !secret garage-api-encryption-key
+    key: fkJhRpwgek++AqTKS5LQoHSpHmeRaJEhtg0Ea/CQ6UA=
 
 ota:
   - platform: esphome
-    password: !secret garage-ota-password
+    password: fkJhRpwgek++AqTKS5LQoHSpHmeRaJEhtg0Ea/CQ6UA=
 
 wifi:
   ssid: !secret wifi-ssid
@@ -23,23 +23,24 @@ wifi:
 
   # Enable fallback hotspot in case wifi connection fails
   ap:
-    ssid: "Garage Fallback Hotspot"
+    ssid: "Rain Water Fallback Hotspot"
     password: "sYV2nSM4hvus"
 
 binary_sensor:
 - platform: gpio
-  name: "Garage Button X"
+  name: "Garage Roof Rain and Snow Sensor"
+  icon: "mdi:weather-snowy-rainy"
   pin:
-    number: 14
+    number: 19
     inverted: false
     mode:
       input: true
       pullup: true
+
+switch:
 - platform: gpio
-  name: "Garage Button Y"
+  name: "Water Butt Output Valve"
+  icon: "mdi:pipe-valve"
   pin:
-    number: 15
+    number: 16
     inverted: false
-    mode:
-      input: true
-      pullup: true

@@ -32,7 +32,6 @@ binary_sensor:
   icon: "mdi:weather-snowy-rainy"
   pin:
     number: 19
-    inverted: false
     mode:
       input: true
       pullup: true
@@ -43,4 +42,10 @@ switch:
   icon: "mdi:pipe-valve"
   pin:
     number: 16
-    inverted: false
+
+output:
+- platform: gpio
+  id: wifi_led
+  pin:
+    number: 3
+    inverted: true

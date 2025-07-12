@@ -1,3 +1,9 @@
+# The RP2040 rain sensor/solenoid device.
+#
+# Copyright 2025. Alan B. Christie
+#
+# Offers a binary sensor input for rain detection
+# and a switch to control the water supply valve.
 esphome:
   name: rain-water
   friendly_name: Rain Water Control
@@ -8,16 +14,16 @@ rp2040:
 # Enable logging
 logger:
 
-# Enable Home Assistant API
+# Enable Home Assistant API and over-the-air base64 keys
 api:
   encryption:
     key: fkJhRpwgek++AqTKS5LQoHSpHmeRaJEhtg0Ea/CQ6UA=
-
 ota:
   - platform: esphome
     password: fkJhRpwgek++AqTKS5LQoHSpHmeRaJEhtg0Ea/CQ6UA=
 
 wifi:
+  # WiFi details (taken from secrets.yaml)
   ssid: !secret wifi-ssid
   password: !secret wifi-password
 
@@ -27,16 +33,20 @@ wifi:
     password: "sYV2nSM4hvus"
 
 binary_sensor:
+  # The rain sensor.
+  # It presents itself with on (raining) or off.
 - platform: gpio
   name: "Garage Roof Rain and Snow Sensor"
   icon: "mdi:weather-snowy-rainy"
   pin:
     number: 19
+    inverted: true
     mode:
       input: true
-      pullup: true
 
 switch:
+  # A 'switch' to control the Water valve.
+  # When 'on' the solenoid operates and water flows.
 - platform: gpio
   name: "Water Butt Output Valve"
   icon: "mdi:pipe-valve"
@@ -44,6 +54,9 @@ switch:
     number: 16
 
 output:
+  # An output used to light the on-board WiFi LED.
+  # For no practical reason other than aesthetics -
+  # the LED is on the board, use it.
 - platform: gpio
   id: wifi_led
   pin:

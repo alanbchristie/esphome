@@ -16,15 +16,24 @@ housing).
 
 For now I'm happy to lay the components out on a board with some neat wiring.
 
-### Electric 12 solenoid valve
+### Electric 12 solenoid valve and hosepipe adapters
 Rather than a plastic device I decided to go with a 1/2 inch BSP solenoid valve.
 This should allow sufficient water through without resorting to micro-bore
 pipes. It's operated by applying 12v DC and will draw about 3A when the solenoid is
 activated (allowing the flow of water).
 
-It'sa a Tailonz Pneumatic brass electric [solenoid valve].
+It's a Tailonz Pneumatic brass electric [solenoid valve].
 
 - Cost: About £25.49 from Amazon
+
+I also intend to connect a standard hosepipe to the valve with an approximate internal
+diameter of 13mm and external diameter of 17mm. The supplied BSP adapters are too small
+so I need a suitable brass 1/2 inch adapter (and jubilee clips). I get these from
+[The Hosemaster]. A pair of Male Taper BSP Brass Hose Tail Adaptors
+(MH08/08 - see their NH.pdf document for precise details) and a box of 10 stainless
+steel 13mm-20mm jubilee clips (I might need more jubilee clips).
+
+- Cost: £36.36, including shipping.
 
 ### RP2040
 For ESPHome I chose to use a wireless Raspberry Pi Pico (RP2040), a super-cheap
@@ -88,6 +97,36 @@ come to our rescue again with an extremely robust cable for outdoor environments
 
 - https://www.rapidonline.com/lappkabel-0021880-robust-210-black-data-cable-2-x-0-5mm-no-earth-63-4752
 
+## Creating a rain history 'helper'
+The **Garage Roof Rain and Snow Sensor** is a binary sensor that's **On** when it's
+raining. On its own the sensor can only provide the current state - i'ts raining (now)
+or it is not. Because I want to automate a watering system I actually need an *estimate*
+of how "wet" it's been. I can get a crude estimate of how *wet* it's been by knowing how
+*long* it's been raining (over the past few days). To do this we employ the standard
+**Home Assistant** [History Stats] integration.
+
+The History Stats integration can providing a rolling window of "on" (or "off') duration
+for binary sensors over a period of time. It can provide the total **time** our binary
+sensor was "on" or the **ratio** (a percentage of time) the sensor was "on" for a
+given duration.
+
+To report the total time in hours it's been raining over the last 3 days ending *today*
+at 23:59 we can configure the history stats helper like this: -
+
+- **entity** `"Garage Roof Rain and Snow Sensor"`
+- **state** `"On"`
+- **type** `"time"`
+- **end** `"{{ today_at('23:59') }}"`
+- **duration** `"3d"`
+
+This gives us a sensor history with a unit of measurement that's hours with a
+default display precision of 0.00 (I alter this to '0.0').
+
+>   I don't like times that are `00:00` because it always causes confusion
+    about whether that's the start of the day or the end of the day.
+    It's why airplanes or trains don't depart at `00:00` - it's always
+    `00:01` or `23:59`.
+
 ---
 
 [mini]: https://shop.pimoroni.com/products/automation-2040-w-mini?variant=40336518086739
@@ -96,3 +135,5 @@ come to our rescue again with an extremely robust cable for outdoor environments
 [reylax]: https://www.amazon.co.uk/dp/B0C9P4QXBF?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1
 [relay module]: https://www.amazon.co.uk/dp/B0CM2Y1WMZ?ref=ppx_yo2ov_dt_b_fed_asin_title
 [solenoid valve]: https://www.amazon.co.uk/dp/B0C5ZR4148?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1
+[the hosemaster]: https://www.thehosemaster.co.uk
+[history stats]: https://www.home-assistant.io/integrations/history_stats/

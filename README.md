@@ -32,8 +32,7 @@ When you're done you can stop the container with: -
     docker compose down
 
 ## Devices
-
-**rain-water.yaml** is my first super-simple device based on their tutorials.
+[rain-water](docs/rain-water.md) is my first super-simple device based on their tutorials.
 It's for a [Pico] W on a [mini] board with a **switch** to control a solenoid
 water valve and a **binary input** driven by a rain/snow sensor.
 

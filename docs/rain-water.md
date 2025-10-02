@@ -1,12 +1,12 @@
 # The Rain/Water Device
 I had a timer-based watering system some years ago. Driven by an outside tap
-under mains pressure. One time, while awy, it failed - with the valve separating from
+under mains pressure. One time, while away, it failed - with the valve separating from
 the tap. I lost a lot of water that year! Luckily a neighbour heard the water and had
 the courtesy to climb into the garden and turn the tap off.
 
 Now I want to water some key plants but many years have elapsed and we have
 extremely powerful and cheap micro-controllers and automation frameworks
-(like Home Assistant).
+(like Home Assistant) so building your own solution should be easier today.
 
 ## Components
 We need a few components to bring the rain-sensing automated watering system together.
@@ -83,8 +83,8 @@ We **invert** the input so that it's logically **ON** when raining.
 
 ## Sensor and solenoid wiring
 Part of the wiring will be outside and although it's low voltage (12V) we still need
-to protect from the weather, so UV-tolerant wiring wil be essential. It's not **mains**
-so we don't have to worry about conduits and protection.
+to protect from the weather, so UV-tolerant wiring will be essential. It's not **mains**
+so we don't have to worry about conduits and protection for people.
 
 for the rain sensor (which needs 3 wires) I chose a 3-core **LappKabel 3-core truck cable**
 distributed by Rapid Electronics. It fits the sensor grommet perfectly, is flexible and

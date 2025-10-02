@@ -18,7 +18,7 @@ I've simplified the launch of the ESPHome container by relying on Docker Compose
 ## Getting started with ESPHome
 As well as Docker, you'll need: -
 
-- Docker Compose
+- [Docker Compose]
 - A suitable USB Cable
 
 Launching the ESPHome builder container image from the root of the project: -

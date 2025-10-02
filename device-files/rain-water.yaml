@@ -34,7 +34,7 @@ wifi:
 
 binary_sensor:
   # The rain sensor.
-  # It presents itself with on (raining) or off.
+  # It presents itself as 'on' (0V) when raining or 'off' (12V).
 - platform: gpio
   name: "Garage Roof Rain and Snow Sensor"
   icon: "mdi:weather-snowy-rainy"
@@ -45,7 +45,7 @@ binary_sensor:
       input: true
 
 switch:
-  # A 'switch' to control the Water valve.
+  # A 'switch' to control the water valve.
   # When 'on' the solenoid operates and water flows.
 - platform: gpio
   name: "Water Butt Output Valve"

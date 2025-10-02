@@ -97,6 +97,18 @@ come to our rescue again with an extremely robust cable for outdoor environments
 
 - https://www.rapidonline.com/lappkabel-0021880-robust-210-black-data-cable-2-x-0-5mm-no-earth-63-4752
 
+## The finished product
+Here are all the internal items mounted on a board in the garage roof. Power comes in
+from the left and 12v and the sensing line goes to the rain sensor on the right.
+The 12v supply to the solenoid goes off in the top-left of the picture.
+
+![Controller](./images/IMG_9636.jpeg)
+
+And here's the rain sensor mounted on the guttering of the garage, located so that
+it should detect rain regardless of the direction fo rainfall: -
+
+![Sensor](./images/IMG_9509.jpeg)
+
 ## Creating a rain history 'helper'
 The **Garage Roof Rain and Snow Sensor** is a binary sensor that's **On** when it's
 raining. On its own the sensor can only provide the current state - i'ts raining (now)

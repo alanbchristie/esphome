@@ -31,10 +31,28 @@ When you're done you can stop the container with: -
 
     docker compose down
 
+The _pattern_ here is to use the local builder to validate and compile the firmware
+for my Pico devices. This compiled (`.elf`) file can then be copied to the Pico
+that';s attached to tha laptop's USB port (a drag-and-drop operation).
+
+You can find Material Design Icons (MDI) used by Home Assistant at: -
+
+    https://pictogrammers.com/library/mdi/
+
+## Generating API keys
+To quickly generate a 32-character API for the various device file encryption keys
+you can use `openssl`: -
+
+    openssl rand -base64 32
+
 ## Devices
 [rain-water](docs/rain-water.md) is my first super-simple device based on their tutorials.
 It's for a [Pico] W on a [mini] board with a **switch** to control a solenoid
 water valve and a **binary input** driven by a rain/snow sensor.
+
+
+[alarm-relay-board](docs/alarm-relay-board.md) is a simple device based on the Waveshare Pico Relay
+board.
 
 ---
 

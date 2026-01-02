@@ -1,0 +1,85 @@
+# The RP2040 Alarm Panel relay board.
+#
+# Copyright 2026. Alan B. Christie
+#
+# Offers 8 relays, an LED and a Buzzer.
+esphome:
+  name: alarm-relay-board
+  friendly_name: Alarm Relay Board
+
+rp2040:
+  board: rpipicow
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API and over-the-air base64 keys
+api:
+  encryption:
+    key: Fezm1VyWanJQ51eiDE89jk0dY5dMI3PPAysx613qITg=
+ota:
+  - platform: esphome
+    password: Fezm1VyWanJQ51eiDE89jk0dY5dMI3PPAysx613qITg=
+
+wifi:
+  # WiFi details (taken from secrets.yaml)
+  ssid: !secret wifi-ssid
+  password: !secret wifi-password
+
+  # Enable fallback hotspot in case wifi connection fails
+  # The SSID cannot exceed 32 characters
+  ap:
+    ssid: ARB Fallback Hotspot
+    password: "pTACKTmbJRfp"
+
+switch:
+  # 8 Relays.
+  # Each capable of handling 10A.
+- platform: gpio
+  name: Relay 1
+  icon: mdi:electric-switch
+  pin:
+    number: 21
+    inverted: false
+- platform: gpio
+  name: Relay 2
+  icon: mdi:electric-switch
+  pin:
+    number: 20
+    inverted: false
+- platform: gpio
+  name: Relay 3
+  icon: mdi:electric-switch
+  pin:
+    number: 19
+    inverted: false
+- platform: gpio
+  name: Relay 4
+  icon: mdi:electric-switch
+  pin:
+    number: 18
+    inverted: false
+- platform: gpio
+  name: Relay 5
+  icon: mdi:electric-switch
+  pin:
+    number: 17
+    inverted: false
+- platform: gpio
+  name: Relay 6
+  icon: mdi:electric-switch
+  pin:
+    number: 16
+    inverted: false
+- platform: gpio
+  name: Relay 7 (Alarm)
+  icon: mdi:alarm-bell
+  pin:
+    number: 15
+    inverted: false
+- platform: gpio
+  name: Relay 8 (Panic)
+  icon: mdi:alarm-light-outline
+  pin:
+    number: 14
+    inverted: false
